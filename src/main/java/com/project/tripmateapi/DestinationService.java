@@ -1,0 +1,45 @@
+package com.project.tripmateapi;
+
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class DestinationService {
+    DestinationRepository destinationRepository;
+
+    public DestinationService(DestinationRepository destinationRepository) {
+        this.destinationRepository = destinationRepository;
+    }
+
+    public List<Destination> getAllDestinations() {
+        return destinationRepository.findAll();
+    }
+
+    public Destination getDestinationById(Integer id) {
+        return destinationRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Destination doesn't exist"));
+    }
+
+    public Destination getDestinationByCountry(String name) {
+        return destinationRepository.getByCountry(name);
+    }
+
+    public void addANewDestination(Destination destination) {
+        destinationRepository.save(destination);
+    }
+
+    public void updateDestination(Integer id, Destination destination) {
+        Destination destinationExist = destinationRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Destination not found"));
+
+        destinationExist.setCountry(destination.getCountry());
+        destinationExist.setCity(destination.getCity());
+        destinationExist.setDescription(destination.getDescription());
+        destinationRepository.save(destinationExist);
+    }
+
+    public void removeADestination(Integer id) {
+        destinationRepository.deleteById(id);
+    }
+}
