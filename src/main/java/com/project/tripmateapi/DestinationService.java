@@ -17,8 +17,7 @@ public class DestinationService {
     }
 
     public Destination getDestinationById(Integer id) {
-        return destinationRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("Destination doesn't exist"));
+        return destinationRepository.findById(id).orElseThrow(() -> new IllegalStateException("Destination doesn't exist"));
     }
 
     public Destination getDestinationByCountry(String name) {
@@ -29,13 +28,21 @@ public class DestinationService {
         destinationRepository.save(destination);
     }
 
-    public void updateDestination(Integer id, Destination destination) {
-        Destination destinationExist = destinationRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("Destination not found"));
+    public void updateDestinationDetails(Integer id, Destination destination) {
+        Destination destinationExist = destinationRepository.findById(id).orElseThrow(() -> new IllegalStateException("Destination not found"));
 
-        destinationExist.setCountry(destination.getCountry());
-        destinationExist.setCity(destination.getCity());
-        destinationExist.setDescription(destination.getDescription());
+        if (destination.getCountry() != null) {
+            destinationExist.setCountry(destination.getCountry());
+        }
+
+        if (destination.getCity() != null) {
+            destinationExist.setCity(destination.getCity());
+        }
+
+        if (destination.getDescription() != null) {
+            destinationExist.setDescription(destination.getDescription());
+        }
+
         destinationRepository.save(destinationExist);
     }
 

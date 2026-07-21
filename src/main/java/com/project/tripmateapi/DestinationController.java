@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/tripmate-api")
+@RequestMapping("api/v1/tripmate-api/destination")
 public class DestinationController {
     DestinationService destinationService;
 
@@ -29,8 +29,8 @@ public class DestinationController {
     }
 
     @PutMapping("{id}")
-    public void updateDestination(@PathVariable Integer id, @RequestBody Destination destination) {
-        destinationService.updateDestination(id, destination);
+    public void updateDestinationDetails(@PathVariable Integer id, @RequestBody Destination destination) {
+        destinationService.updateDestinationDetails(id, destination);
     }
 
     @PostMapping

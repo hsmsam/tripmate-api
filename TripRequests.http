@@ -1,0 +1,39 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+GET http://localhost:8080/api/v1/tripmate-api/trip
+
+###
+GET http://localhost:8080/api/v1/tripmate-api/trip/1
+
+###
+GET http://localhost:8080/api/v1/tripmate-api/trip/destination/5
+
+###
+POST http://localhost:8080/api/v1/tripmate-api/trip
+Content-Type: application/json
+
+{
+  "tripName": "Winter 2026",
+  "travellerName": "Jimmy",
+  "destination": {
+    "id": 5
+  },
+  "startDate": "2026-11-24",
+  "endDate": "2026-12-04",
+  "budget": 2500
+}
+
+###
+PUT http://localhost:8080/api/v1/tripmate-api/trip/3
+Content-Type: application/json
+
+{
+  "travellerName": "Gervonta"
+}
+
+###
+DELETE http://localhost:8080/api/v1/tripmate-api/trip/Winter2026
+
