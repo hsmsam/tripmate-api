@@ -11,7 +11,7 @@ public class Destination {
     private Integer id;
     private String city;
     private String country;
-    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     public Destination() {
@@ -26,6 +26,10 @@ public class Destination {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCity() {

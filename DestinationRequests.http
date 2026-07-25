@@ -3,26 +3,26 @@ GET https://examples.http-client.intellij.net/get
     ?generated-in=IntelliJ IDEA
 
 ###
-GET http://localhost:8080/api/v1/tripmate-api/destination
+GET http://localhost:8080/api/v1/destination
 
 ###
-GET http://localhost:8080/api/v1/tripmate-api/destination/2
+GET http://localhost:8080/api/v1/destination/8
 
 ###
-GET http://localhost:8080/api/v1/tripmate-api/destination/country/Canada
+GET http://localhost:8080/api/v1/destination/country/Australia
 
 ###
-POST http://localhost:8080/api/v1/tripmate-api/destination
+POST http://localhost:8080/api/v1/destination
 Content-Type: application/json
 
 {
-  "country": "Brazil",
-  "city": "Rio de Janeiro",
-  "description": "Rio de Janeiro is Brazil's second-largest city, famous for its dramatic setting between towering coastal mountains, lush tropical forests, and the Atlantic Ocean. Renowned for iconic landmarks like the Christ the Redeemer statue and Copacabana beach, the city is a global hub for its vibrant Carnival celebrations, samba, and rich cultural heritage."
+  "country": "France",
+  "city": "Paris",
+  "description": "A holiday to Paris offers world-class art, iconic architecture, and vibrant cafe culture, centered around landmarks like the Eiffel Tower, the Louvre Museum, and the Seine River."
 }
 
 ###
-PUT http://localhost:8080/api/v1/tripmate-api/destination/5
+PUT http://localhost:8080/api/v1/destination/8
 Content-Type: application/json
 
 {
@@ -32,5 +32,5 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/api/v1/tripmate-api/destination/1
+DELETE http://localhost:8080/api/v1/destination/8
 

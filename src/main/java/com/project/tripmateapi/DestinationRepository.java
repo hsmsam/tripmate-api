@@ -2,6 +2,8 @@ package com.project.tripmateapi;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface DestinationRepository extends JpaRepository<Destination, Integer> {
-    Destination getByCountry(String name);
+    List<Destination> findByCountry(String name);
 }

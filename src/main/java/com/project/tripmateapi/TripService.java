@@ -7,8 +7,8 @@ import java.util.List;
 
 @Service
 public class TripService {
-    TripRepository tripRepository;
-    DestinationRepository destinationRepository;
+    private final TripRepository tripRepository;
+    private final DestinationRepository destinationRepository;
 
     public TripService(TripRepository tripRepository, DestinationRepository destinationRepository) {
         this.tripRepository = tripRepository;
@@ -21,15 +21,53 @@ public class TripService {
 
     public Trip getTripById(Integer id) {
         return tripRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException(id + "not found"));
+                .orElseThrow(() -> new IllegalStateException(id + " not found"));
     }
 
     public List<Trip> getTripsByDestination(Integer id) {
         Destination destination = destinationRepository
                 .findById(id)
                 .orElseThrow(() -> new IllegalStateException("no trips found for destination"));
-
         return tripRepository.findByDestination(destination);
+    }
+
+    public List<Trip> getTripByBudget(BigDecimal max) {
+        return tripRepository.findByBudgetLessThanEqual(max);
+    }
+
+    public BigDecimal getTotalExperienceCost(Integer id) {
+        Trip trip = tripRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Trip not found"));
+
+        return trip.getTotalExperienceCost();
+    }
+
+    public Double getAverageExperienceRating(Integer id) {
+        Trip trip = tripRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Trip not found"));
+
+        return trip.getAverageExperienceRating();
+    }
+
+    public BigDecimal getTotalSpentOnTrip(Integer id) {
+        Trip trip = tripRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Trip not found"));
+
+        return trip.getTotalSpent();
+    }
+
+    public BigDecimal getRemainingBudgetOnTrip(Integer id) {
+        Trip trip = tripRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Trip not found"));
+
+        return trip.getRemainingBudget();
+    }
+
+    public Integer getNumberOfExperiences(Integer id) {
+        Trip trip = tripRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Trip not found"));
+
+        return trip.getNumberOfExperiences();
     }
 
     public void addANewTrip(Trip trip) {
@@ -38,7 +76,7 @@ public class TripService {
 
     public void updateTripDetails(Integer id, Trip trip) {
         Trip tripExists = tripRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("trip doesn't exist"));
+                .orElseThrow(() -> new IllegalStateException("Trip doesn't exist"));
 
         if (trip.getTripName() != null) {
             tripExists.setTripName(trip.getTripName());
@@ -64,5 +102,21 @@ public class TripService {
 
     public void removeTrip(Integer id) {
         tripRepository.deleteById(id);
+    }
+
+    public TripSummary getTripSummary(Integer id) {
+        Trip trip = tripRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Trip doesn't exist"));
+
+        return new TripSummary(
+                trip.getTripName(),
+                trip.getBudget(),
+                trip.getTotalSpent(),
+                trip.getRemainingBudget(),
+                trip.getNumberOfExperiences(),
+                trip.getAverageExperienceRating(),
+                trip.getBestRatedExperience(),
+                trip.getMostCommonActivity()
+        );
     }
 }

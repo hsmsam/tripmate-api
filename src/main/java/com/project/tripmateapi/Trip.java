@@ -1,10 +1,15 @@
 package com.project.tripmateapi;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Entity
 public class Trip {
@@ -19,22 +24,30 @@ public class Trip {
     private LocalDate startDate;
     private LocalDate endDate;
     private BigDecimal budget;
+    @OneToMany(mappedBy = "trip")
+    @JsonManagedReference
+    private List<Experience> experiences;
 
     public Trip() {
 
     }
 
-    public Trip(String tripName, String travellerName, Destination destination, LocalDate startDate, LocalDate endDate, BigDecimal budget) {
+    public Trip(String tripName, String travellerName, Destination destination, LocalDate startDate, LocalDate endDate, BigDecimal budget, List<Experience> experiences) {
         this.tripName = tripName;
         this.travellerName = travellerName;
         this.destination = destination;
         this.startDate = startDate;
         this.endDate = endDate;
         this.budget = budget;
+        this.experiences = experiences;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id){
+        this.id = id;
     }
 
     public String getTripName() {
@@ -77,6 +90,14 @@ public class Trip {
         this.endDate = endDate;
     }
 
+    public List<Experience> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(List<Experience> experiences) {
+        this.experiences = experiences;
+    }
+
     public BigDecimal getBudget() {
         return budget;
     }
@@ -85,15 +106,65 @@ public class Trip {
         this.budget = budget;
     }
 
+    public BigDecimal getTotalExperienceCost() {
+        if (experiences == null || experiences.isEmpty()) {
+            return BigDecimal.ZERO;
+        }
+
+        return experiences.stream().map(Experience::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public double getAverageExperienceRating() {
+        if (experiences == null || experiences.isEmpty()) {
+            return 0.0;
+        }
+
+        return experiences.stream().mapToDouble(Experience::getRating).average().orElse(0.0);
+    }
+
+    public BigDecimal getTotalSpent() {
+        return getTotalExperienceCost();
+    }
+
+    public BigDecimal getRemainingBudget() {
+        return budget.subtract(getTotalSpent());
+    }
+
+    public int getNumberOfExperiences() {
+        if (experiences == null || experiences.isEmpty()) {
+            return 0;
+        }
+
+        return experiences.size();
+    }
+
+    public Experience getBestRatedExperience() {
+        if (experiences == null || experiences.isEmpty()) {
+            return null;
+        }
+
+        return experiences.stream()
+                .max(Comparator.comparingDouble(Experience::getRating))
+                .orElse(null);
+    }
+
+    public ActivityType getMostCommonActivity() {
+        if (experiences == null || experiences.isEmpty()) {
+            return null;
+        }
+
+        return experiences.stream().collect(Collectors.groupingBy(Experience::getActivity, Collectors.counting())).entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey).orElse(null);
+    }
+
     @Override
     public boolean equals(Object object) {
         if (object == null || getClass() != object.getClass()) return false;
         Trip trip = (Trip) object;
-        return Objects.equals(id, trip.id) && Objects.equals(tripName, trip.tripName) && Objects.equals(travellerName, trip.travellerName) && Objects.equals(destination, trip.destination) && Objects.equals(startDate, trip.startDate) && Objects.equals(endDate, trip.endDate) && Objects.equals(budget, trip.budget);
+        return Objects.equals(id, trip.id) && Objects.equals(tripName, trip.tripName) && Objects.equals(travellerName, trip.travellerName) && Objects.equals(destination, trip.destination) && Objects.equals(startDate, trip.startDate) && Objects.equals(endDate, trip.endDate) && Objects.equals(budget, trip.budget) && Objects.equals(experiences, trip.experiences);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tripName, travellerName, destination, startDate, endDate, budget);
+        return Objects.hash(id, tripName, travellerName, destination, startDate, endDate, budget, experiences);
     }
 }

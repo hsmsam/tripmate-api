@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/tripmate-api/destination")
+@RequestMapping("api/v1/destination")
 public class DestinationController {
-    DestinationService destinationService;
+    private final DestinationService destinationService;
 
     public DestinationController(DestinationService destinationService) {
         this.destinationService = destinationService;
@@ -24,7 +24,7 @@ public class DestinationController {
     }
 
     @GetMapping("/country/{country}")
-    public Destination getDestinationByCountry(@PathVariable String country) {
+    public List<Destination> getDestinationByCountry(@PathVariable String country) {
         return destinationService.getDestinationByCountry(country);
     }
 

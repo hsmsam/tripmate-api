@@ -6,7 +6,7 @@ import java.util.List;
 
 @Service
 public class DestinationService {
-    DestinationRepository destinationRepository;
+    private final DestinationRepository destinationRepository;
 
     public DestinationService(DestinationRepository destinationRepository) {
         this.destinationRepository = destinationRepository;
@@ -20,8 +20,8 @@ public class DestinationService {
         return destinationRepository.findById(id).orElseThrow(() -> new IllegalStateException("Destination doesn't exist"));
     }
 
-    public Destination getDestinationByCountry(String name) {
-        return destinationRepository.getByCountry(name);
+    public List<Destination> getDestinationByCountry(String name) {
+        return destinationRepository.findByCountry(name);
     }
 
     public void addANewDestination(Destination destination) {

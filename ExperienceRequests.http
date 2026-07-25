@@ -1,0 +1,41 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+GET http://localhost:8080/api/v1/experience
+
+###
+GET http://localhost:8080/api/v1/experience/1
+
+###
+GET http://localhost:8080/api/v1/experience/type/SIGHTSEEING
+
+###
+GET http://localhost:8080/api/v1/experience/trip/2/top-rated
+
+###
+POST http://localhost:8080/api/v1/experience
+Content-Type: application/json
+
+{
+  "trip": {
+    "id": 2
+  },
+  "title": "Visit the Louvre Museum",
+  "activity": "SIGHTSEEING",
+  "price": 0,
+  "rating": 4.5,
+  "review": "Louvre Museum needs no reviews. Visiting the Louvre Museum was an amazing experience! Seeing all the stunning architecture and incredible paintings from renowned artists, some over 500 years old, was truly magical. It's great that entry is free, just remember to book your tickets in advance. Highly recommend!"
+}
+
+###
+PUT http://localhost:8080/api/v1/experience/3
+Content-Type: application/json
+
+{
+  "price": 30
+}
+
+###
+DELETE http://localhost:8080/api/v1/experience/1

@@ -2,12 +2,13 @@ package com.project.tripmateapi;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/tripmate-api/trip")
+@RequestMapping("api/v1/trip")
 public class TripController {
-    TripService tripService;
+    private final TripService tripService;
 
     public TripController(TripService tripService) {
         this.tripService = tripService;
@@ -26,6 +27,41 @@ public class TripController {
     @GetMapping("/destination/{id}")
     public List<Trip> getTripsByDestination(@PathVariable Integer id) {
         return tripService.getTripsByDestination(id);
+    }
+
+    @GetMapping("/budget/{max}")
+    public List<Trip> getTripsByBudget(@PathVariable BigDecimal max) {
+        return tripService.getTripByBudget(max);
+    }
+
+    @GetMapping("/{id}/total-cost")
+    public BigDecimal getTotalExperienceCost(@PathVariable Integer id) {
+        return tripService.getTotalExperienceCost(id);
+    }
+
+    @GetMapping("/{id}/average-rating")
+    public Double getAverageExperienceRating(@PathVariable Integer id) {
+        return tripService.getAverageExperienceRating(id);
+    }
+
+    @GetMapping("{id}/total-spent")
+    public BigDecimal getTotalSpentOnTrip(@PathVariable Integer id) {
+        return tripService.getTotalSpentOnTrip(id);
+    }
+
+    @GetMapping("{id}/remaining-budget")
+    public BigDecimal getRemainingBudgetOnTrip(@PathVariable Integer id) {
+        return tripService.getRemainingBudgetOnTrip(id);
+    }
+
+    @GetMapping("{id}/number-of-experiences")
+    public Integer getNumberOfExperiences(@PathVariable Integer id) {
+        return tripService.getNumberOfExperiences(id);
+    }
+
+    @GetMapping("/{id}/summary")
+    public TripSummary getTripSummary(@PathVariable Integer id) {
+        return tripService.getTripSummary(id);
     }
 
     @PostMapping

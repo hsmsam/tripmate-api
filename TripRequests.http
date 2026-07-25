@@ -3,37 +3,58 @@ GET https://examples.http-client.intellij.net/get
     ?generated-in=IntelliJ IDEA
 
 ###
-GET http://localhost:8080/api/v1/tripmate-api/trip
+GET http://localhost:8080/api/v1/trip
 
 ###
-GET http://localhost:8080/api/v1/tripmate-api/trip/1
+GET http://localhost:8080/api/v1/trip/1
 
 ###
-GET http://localhost:8080/api/v1/tripmate-api/trip/destination/5
+GET http://localhost:8080/api/v1/trip/destination/8
 
 ###
-POST http://localhost:8080/api/v1/tripmate-api/trip
+GET http://localhost:8080/api/v1/trip/budget/2500
+
+###
+GET http://localhost:8080/api/v1/trip/4/total-cost
+
+###
+GET http://localhost:8080/api/v1/trip/1/average-rating
+
+###
+GET http://localhost:8080/api/v1/trip/3/total-spent
+
+###
+GET http://localhost:8080/api/v1/trip/1/remaining-budget
+
+###
+GET http://localhost:8080/api/v1/trip/4/number-of-experiences
+
+###
+GET http://localhost:8080/api/v1/trip/4/summary
+
+###
+POST http://localhost:8080/api/v1/trip
 Content-Type: application/json
 
 {
-  "tripName": "Winter 2026",
-  "travellerName": "Jimmy",
+  "tripName": "France Summer Trip",
+  "travellerName": "Lorenzo",
   "destination": {
-    "id": 5
+    "id": 2
   },
-  "startDate": "2026-11-24",
-  "endDate": "2026-12-04",
-  "budget": 2500
+  "startDate": "2026-06-22",
+  "endDate": "2026-06-29",
+  "budget": 1500
 }
 
 ###
-PUT http://localhost:8080/api/v1/tripmate-api/trip/3
+PUT http://localhost:8080/api/v1/trip/3
 Content-Type: application/json
 
 {
-  "travellerName": "Gervonta"
+  "tripName": "London 2026"
 }
 
 ###
-DELETE http://localhost:8080/api/v1/tripmate-api/trip/Winter2026
+DELETE http://localhost:8080/api/v1/trip/1
 
