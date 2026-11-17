@@ -201,6 +201,15 @@ src/
 
 ---
 
+## Known Limitations
+
+- No authentication
+- No input validation or custom error handling yet (invalid requests may return generic 500 errors)
+- Entities are exposed directly in requests and responses
+- No automated tests
+
+---
+
 ## Author
 
 Hafez Sam — [github.com/hsmsam](https://github.com/hsmsam)
