@@ -24,7 +24,7 @@ A RESTful backend API for managing travel experiences. Built with Java and Sprin
 
 ### Prerequisites
 
-- Java 17+
+- Java 21
 - Docker and Docker Compose
 - Maven
 
