@@ -17,7 +17,7 @@ A RESTful backend API for managing travel experiences. Built with Java and Sprin
 - **Spring Boot**
 - **Spring Data JPA**
 - **PostgreSQL**
-- **Docker**
+- **Docker Compose (PostgreSQL)**
 - **Maven**
 
 ## Getting Started
