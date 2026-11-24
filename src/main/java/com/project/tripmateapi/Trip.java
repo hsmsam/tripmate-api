@@ -46,7 +46,7 @@ public class Trip {
         return id;
     }
 
-    public void setId(Integer id){
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -111,7 +111,9 @@ public class Trip {
             return BigDecimal.ZERO;
         }
 
-        return experiences.stream().map(Experience::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return experiences.stream()
+                .map(Experience::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public double getAverageExperienceRating() {
@@ -153,7 +155,11 @@ public class Trip {
             return null;
         }
 
-        return experiences.stream().collect(Collectors.groupingBy(Experience::getActivity, Collectors.counting())).entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey).orElse(null);
+        return experiences.stream()
+                .collect(Collectors.groupingBy(Experience::getActivity, Collectors.counting()))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey).orElse(null);
     }
 
     @Override
