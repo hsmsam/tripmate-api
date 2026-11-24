@@ -1,5 +1,10 @@
-package com.project.tripmateapi;
+package com.project.tripmateapi.service;
 
+import com.project.tripmateapi.entity.Destination;
+import com.project.tripmateapi.entity.Trip;
+import com.project.tripmateapi.repository.TripRepository;
+import com.project.tripmateapi.dto.TripSummary;
+import com.project.tripmateapi.repository.DestinationRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

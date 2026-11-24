@@ -1,5 +1,7 @@
-package com.project.tripmateapi;
+package com.project.tripmateapi.controller;
 
+import com.project.tripmateapi.entity.Destination;
+import com.project.tripmateapi.service.DestinationService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

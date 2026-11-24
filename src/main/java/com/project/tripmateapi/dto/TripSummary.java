@@ -1,4 +1,7 @@
-package com.project.tripmateapi;
+package com.project.tripmateapi.dto;
+
+import com.project.tripmateapi.entity.Experience;
+import com.project.tripmateapi.enums.ActivityType;
 
 import java.math.BigDecimal;
 import java.util.Objects;

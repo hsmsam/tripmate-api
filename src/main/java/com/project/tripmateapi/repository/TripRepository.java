@@ -1,5 +1,7 @@
-package com.project.tripmateapi;
+package com.project.tripmateapi.repository;
 
+import com.project.tripmateapi.entity.Destination;
+import com.project.tripmateapi.entity.Trip;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.math.BigDecimal;

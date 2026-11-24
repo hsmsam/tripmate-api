@@ -1,5 +1,8 @@
-package com.project.tripmateapi;
+package com.project.tripmateapi.controller;
 
+import com.project.tripmateapi.enums.ActivityType;
+import com.project.tripmateapi.entity.Experience;
+import com.project.tripmateapi.service.ExperienceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.project.tripmateapi;
+package com.project.tripmateapi.entity;
 
 import jakarta.persistence.*;
 

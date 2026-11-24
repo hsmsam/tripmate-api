@@ -1,5 +1,8 @@
-package com.project.tripmateapi;
+package com.project.tripmateapi.controller;
 
+import com.project.tripmateapi.entity.Trip;
+import com.project.tripmateapi.dto.TripSummary;
+import com.project.tripmateapi.service.TripService;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;

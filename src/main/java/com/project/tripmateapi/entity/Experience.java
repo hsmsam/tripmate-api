@@ -1,6 +1,7 @@
-package com.project.tripmateapi;
+package com.project.tripmateapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.project.tripmateapi.enums.ActivityType;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;

@@ -1,5 +1,8 @@
-package com.project.tripmateapi;
+package com.project.tripmateapi.service;
 
+import com.project.tripmateapi.enums.ActivityType;
+import com.project.tripmateapi.entity.Experience;
+import com.project.tripmateapi.repository.ExperienceRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

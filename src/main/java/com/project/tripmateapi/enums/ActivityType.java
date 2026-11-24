@@ -1,4 +1,4 @@
-package com.project.tripmateapi;
+package com.project.tripmateapi.enums;
 
 public enum ActivityType {
     FOOD,
